@@ -1,0 +1,29 @@
+{
+  "extends": "../../tsconfig.json",
+  "exclude": [],
+  "include": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.mjs",
+    "**/*.cjs",
+    "**/*.ts",
+    "**/*.tsx",
+    "next.config.mjs",
+    ".next/types/**/*.ts"
+  ],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@payload-config": ["./payload.config.ts"],
+      "payload-appointments-plugin": ["../../packages/payload-appointments-plugin/src/index.ts"],
+      "payload-appointments-plugin/client": [
+        "../../packages/payload-appointments-plugin/src/exports/client.ts"
+      ],
+      "payload-appointments-plugin/types": [
+        "../../packages/payload-appointments-plugin/src/exports/types.ts"
+      ]
+    },
+    "noEmit": true,
+    "emitDeclarationOnly": false
+  }
+}
