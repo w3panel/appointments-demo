@@ -12,7 +12,7 @@
     "build:demo": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "payload": "payload",
-    "lint": "bunx oxlint app collections components lib --tsconfig ../../tsconfig.oxlint.json",
+    "lint": "bunx oxlint app collections components lib --tsconfig ../../tsconfig.oxlint.json --quiet",
     "lint:fix": "bunx oxlint app collections components lib --tsconfig ../../tsconfig.oxlint.json --fix",
     "format": "bunx oxfmt app collections components lib package.json tsconfig.json next.config.mjs payload.config.ts --write",
     "format:check": "bunx oxfmt app collections components lib package.json tsconfig.json next.config.mjs payload.config.ts --check",
