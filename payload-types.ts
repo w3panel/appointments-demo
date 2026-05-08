@@ -73,6 +73,7 @@ export interface Config {
     sentEmails: SentEmail;
     teamMembers: TeamMember;
     services: Service;
+    hostServiceConfigs: HostServiceConfig;
     waitlist: Waitlist;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -91,6 +92,7 @@ export interface Config {
     sentEmails: SentEmailsSelect<false> | SentEmailsSelect<true>;
     teamMembers: TeamMembersSelect<false> | TeamMembersSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
+    hostServiceConfigs: HostServiceConfigsSelect<false> | HostServiceConfigsSelect<true>;
     waitlist: WaitlistSelect<false> | WaitlistSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -380,6 +382,39 @@ export interface SentEmail {
   createdAt: string;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hostServiceConfigs".
+ */
+export interface HostServiceConfig {
+  id: number;
+  host: number | TeamMember;
+  service: number | Service;
+  key?: string | null;
+  enabled?: boolean | null;
+  /**
+   * Host-specific price (overrides service catalog pricing).
+   */
+  price?: number | null;
+  paidService?: boolean | null;
+  /**
+   * Require payment at time of booking
+   */
+  paymentRequired?: boolean | null;
+  depositType?: ('full' | 'fixed' | 'percentage') | null;
+  depositAmount?: number | null;
+  platformFee: {
+    enabled?: boolean | null;
+    feeType?: ('fixed' | 'percentage') | null;
+    feeAmount: number;
+    /**
+     * If checked, show service price as including platform fee.
+     */
+    showFeeIncluded?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Manage waitlist entries for fully booked services
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -476,6 +511,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'services';
         value: number | Service;
+      } | null)
+    | ({
+        relationTo: 'hostServiceConfigs';
+        value: number | HostServiceConfig;
       } | null)
     | ({
         relationTo: 'waitlist';
@@ -704,6 +743,31 @@ export interface ServicesSelect<T extends boolean = true> {
   paymentRequired?: T;
   depositType?: T;
   depositAmount?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hostServiceConfigs_select".
+ */
+export interface HostServiceConfigsSelect<T extends boolean = true> {
+  host?: T;
+  service?: T;
+  key?: T;
+  enabled?: T;
+  price?: T;
+  paidService?: T;
+  paymentRequired?: T;
+  depositType?: T;
+  depositAmount?: T;
+  platformFee?:
+    | T
+    | {
+        enabled?: T;
+        feeType?: T;
+        feeAmount?: T;
+        showFeeIncluded?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
