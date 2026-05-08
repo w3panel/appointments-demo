@@ -12,7 +12,6 @@
     ".next/types/**/*.ts"
   ],
   "compilerOptions": {
-    "baseUrl": "./",
     "paths": {
       "@payload-config": ["./payload.config.ts"],
       "payload-appointments-plugin": ["../../packages/payload-appointments-plugin/src/index.ts"],

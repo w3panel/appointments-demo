@@ -59,6 +59,6 @@
     "oxfmt": "catalog:",
     "postcss": "^8.5.14",
     "tailwindcss": "^4.1.18",
-    "typescript": "catalog:"
+    "@typescript/native-preview": "catalog:"
   }
 }
