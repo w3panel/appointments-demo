@@ -1,0 +1,16 @@
+# Dependencies & Next.js build (standalone repo)
+node_modules/
+.next/
+.turbo/
+out/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Env
+.env
+.env*.local
+
+# Misc
+.DS_Store
